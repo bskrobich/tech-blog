@@ -6,6 +6,7 @@ import Write from "./pages/Write.jsx";
 import Post from "./pages/Post.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Layout from "./components/Layout.jsx";
+import "./style.css"
 
 function App() {
     return (

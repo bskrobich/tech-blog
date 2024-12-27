@@ -1,0 +1,54 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+.app {
+    .container {
+        .auth-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: #101357;
+            h1 {
+                font-family: 'Poppins', sans-serif;
+                font-size: 2rem;
+                color: #fea49f;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                padding: 25px;
+                background-color: white;
+                width: 250px;
+                gap: 18px;
+                border-radius: 4px;
+            }
+            input {
+                padding: 12px;
+                border-radius: 4px;
+            }
+            button {
+                padding: 10px;
+                background-color: #fea49f;
+                font-family: 'Poppins', sans-serif;
+                font-size: 1rem;
+                color: white;
+                border-radius: 4px;
+                transition: background-color 0.5s;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #d57d77;
+            }
+            span {
+                font-size: 0.85rem;
+                text-align: center;
+            }
+        }
+    }
+}
