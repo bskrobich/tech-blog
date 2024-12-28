@@ -1,8 +1,14 @@
 import React from 'react';
+import Logo from "../images/logo.png";
 
 function Footer() {
     return (
-        <div>This is Footer</div>
+        <footer>
+            <img src={Logo} alt="Logo"/>
+            <span>
+                © 2024 <b>Geek Speak.</b> All Rights Reserved.
+            </span>
+        </footer>
     );
 }
 
