@@ -7,7 +7,9 @@ function Navbar() {
         <div className="navbar">
             <div className="container">
                 <div className="navbar-logo">
-                    <img src={Logo} alt="Logo"/>
+                    <Link to="/">
+                        <img src={Logo} alt="Logo"/>
+                    </Link>
                 </div>
                 <div className="navbar-links">
                     <Link className="link" to="/?category=Tech">
