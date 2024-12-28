@@ -3,52 +3,110 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    background-color: #101357;
+    font-family: 'Poppins', sans-serif;
 }
 .app {
+    display: flex;
+    justify-content: center;
     .container {
-        .auth-container {
+        width: 1024px;
+        .auth {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            gap: 250px;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            width: 100vw;
-            background-color: #101357;
-            h1 {
-                font-family: 'Poppins', sans-serif;
-                font-size: 2rem;
-                color: #fea49f;
+            img {
+                width: 350px;
+                height: 350px;
             }
-            form {
+            .login-container {
+                h1 {
+                    text-align: center;
+                    font-size: 2rem;
+                    color: #fea49f;
+                }
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 25px;
+                    background-color: white;
+                    width: 250px;
+                    gap: 18px;
+                    border-radius: 4px;
+                }
+                input {
+                    padding: 12px;
+                    border-radius: 4px;
+                }
+                button {
+                    padding: 10px;
+                    background-color: #fea49f;
+                    font-size: 1rem;
+                    color: white;
+                    border-radius: 4px;
+                    transition: background-color 0.5s;
+                    cursor: pointer;
+                }
+                button:hover {
+                    background-color: #d57d77;
+                }
+                span {
+                    font-size: 0.85rem;
+                    text-align: center;
+                }
+            }
+        }
+        .navbar {
+            .container {
+                padding: 10px 0;
                 display: flex;
-                flex-direction: column;
-                padding: 25px;
-                background-color: white;
-                width: 250px;
-                gap: 18px;
-                border-radius: 4px;
+                justify-content: space-between;
+                align-items: center;
+                .navbar-logo {
+                    img {
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+                .navbar-links {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    h4 {
+                        font-size: 1.1rem;
+                        font-weight: 250;
+                    }
+                    span {
+                        cursor: pointer;
+                        color: white;
+                        font-size: 1.1rem;
+                    }
+                    .write {
+                        background-color: #fea49f;
+                        width: 55px;
+                        height: 55px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: background-color 0.5s;
+                    }
+                    .write:hover {
+                        background-color: #d57d77;
+                    }
+                    .write-link {
+                        text-decoration: none;
+                        color: white;
+                    }
+                }
             }
-            input {
-                padding: 12px;
-                border-radius: 4px;
-            }
-            button {
-                padding: 10px;
-                background-color: #fea49f;
-                font-family: 'Poppins', sans-serif;
-                font-size: 1rem;
-                color: white;
-                border-radius: 4px;
-                transition: background-color 0.5s;
-                cursor: pointer;
-            }
-            button:hover {
-                background-color: #d57d77;
-            }
-            span {
-                font-size: 0.85rem;
-                text-align: center;
-            }
+        }
+        .link {
+            text-decoration: none;
+            color: #fea49f;
         }
     }
 }
