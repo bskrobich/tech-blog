@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router";
 
-function Home() {
+function Menu() {
     const posts =
         [
             {
@@ -21,34 +21,22 @@ function Home() {
                 title: "Hackers hijacked legitimate Chrome extensions to try to steal data",
                 content: "A phishing attack that put malicious code in the Cyberhaven data protection extension appears to be part of a broader campaign.",
                 image_url: "https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/750x500/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/23249791/VRG_ILLO_STK001_carlo_cadenas_cybersecurity_virus.jpg"
-            },
-            {
-                id: 4,
-                title: "The USB-C charging mandate arrives in the EU — here’s what that means",
-                content: "The common charging standard brings USB PD support, improved labelling, and less e-waste.",
-                image_url: "https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/640x640/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/16294981/akrales_190522_3440_0067.jpg"
             }
         ]
 
     return (
-        <div className="homepage">
-            <div className="posts">
-                {posts.map( post => (
-                    <div className="post" key={post.id}>
-                        <div className="image">
-                            <img src={post.image_url} alt="" />
-                        </div>
-                        <div className="content">
-                            <h1>{post.title}</h1>
-                            <Link className="link" to={`/post/${post.id}`}>
-                                <button>Read more</button>
-                            </Link>
-                        </div>
-                    </div>
-                ))}
-            </div>
+        <div className="menu">
+            <h1>More from Geek Speak</h1>
+            {posts.map( post => (
+                <div className="post" key={post.id}>
+                    <img src={post.image_url} alt=""/>
+                    <h2>{post.title}</h2>
+                    <button>Read more</button>
+                </div>
+            ))}
+
         </div>
     );
 }
 
-export default Home;
+export default Menu;

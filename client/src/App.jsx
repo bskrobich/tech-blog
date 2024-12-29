@@ -3,7 +3,7 @@ import Home from "./pages/Home.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Write from "./pages/Write.jsx";
-import Post from "./pages/Post.jsx";
+import Single from "./pages/Single.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Layout from "./components/Layout.jsx";
 import "./style.css"
@@ -17,7 +17,7 @@ function App() {
                         <Route path="/" element={<Layout />} >
                             <Route path="/" element={<Home />} />
                             <Route path="/write" element={<Write />} />
-                            <Route path="/post/:id" element={<Post />} />
+                            <Route path="/post/:id" element={<Single />} />
                         </Route>
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />

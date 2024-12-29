@@ -9,8 +9,10 @@ html, body {
 .app {
     display: flex;
     justify-content: center;
+
     .container {
         width: 1024px;
+
         .auth {
             display: flex;
             flex-direction: row;
@@ -18,16 +20,19 @@ html, body {
             align-items: center;
             justify-content: center;
             height: 100vh;
+
             img {
                 width: 350px;
                 height: 350px;
             }
+
             .login-container {
                 h1 {
                     text-align: center;
                     font-size: 2rem;
                     color: #fea49f;
                 }
+
                 form {
                     display: flex;
                     flex-direction: column;
@@ -37,10 +42,12 @@ html, body {
                     gap: 18px;
                     border-radius: 4px;
                 }
+
                 input {
                     padding: 12px;
                     border-radius: 4px;
                 }
+
                 button {
                     padding: 10px;
                     background-color: #fea49f;
@@ -50,39 +57,47 @@ html, body {
                     transition: background-color 0.5s;
                     cursor: pointer;
                 }
+
                 button:hover {
                     background-color: #d57d77;
                 }
+
                 span {
                     font-size: 0.85rem;
                     text-align: center;
                 }
             }
         }
+
         .navbar {
             .container {
                 padding: 10px 0;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
                 .navbar-logo {
                     img {
                         height: 200px;
                     }
                 }
+
                 .navbar-links {
                     display: flex;
                     gap: 10px;
                     align-items: center;
+
                     h4 {
                         font-size: 1.1rem;
                         font-weight: 250;
                     }
+
                     span {
                         cursor: pointer;
                         color: white;
                         font-size: 1.1rem;
                     }
+
                     .write {
                         background-color: #fea49f;
                         width: 55px;
@@ -93,9 +108,11 @@ html, body {
                         justify-content: center;
                         transition: background-color 0.5s;
                     }
+
                     .write:hover {
                         background-color: #d57d77;
                     }
+
                     .write-link {
                         text-decoration: none;
                         color: white;
@@ -103,10 +120,12 @@ html, body {
                 }
             }
         }
+
         .link {
             text-decoration: none;
             color: #fea49f;
         }
+
         footer {
             display: flex;
             align-items: center;
@@ -114,9 +133,11 @@ html, body {
             margin-top: 100px;
             font-size: 0.8rem;
             background-color: #fea49f;
+
             img {
                 height: 100px;
             }
+
             span {
                 color: white;
             }
@@ -128,13 +149,16 @@ html, body {
                 flex-direction: column;
                 margin-top: 25px;
                 gap: 100px;
+
                 .post {
                     display: flex;
                     gap: 50px;
+
                     .image {
                         flex: 1.25;
                         position: relative;
                         box-shadow: -20px 20px 0 white;
+
                         img {
                             width: 100%;
                             max-height: 375px;
@@ -142,16 +166,127 @@ html, body {
                             display: block;
                         }
                     }
+
                     .content {
                         flex: 1;
                         font-size: 1.5rem;
                         text-align: right;
+                        color: #fea49f;
+
                         button {
                             padding: 10px;
                             background-color: #fea49f;
                             font-size: 1rem;
                             color: white;
-                            border-radius: 4px;
+                            border: none;
+                            transition: background-color 0.5s;
+                            cursor: pointer;
+                        }
+
+                        button:hover {
+                            background-color: #d57d77;
+                        }
+                    }
+                }
+
+                .post:nth-child(even) {
+                    flex-direction: row-reverse;
+
+                    .content {
+                        text-align: left;
+                    }
+
+                    .image {
+                        box-shadow: 20px 20px 0 white;
+                    }
+                }
+            }
+        }
+
+        .single {
+            display: flex;
+            flex-direction: column;
+
+            .container {
+                display: flex;
+                flex-direction: row;
+                gap: 50px;
+
+                .content {
+                    flex: 5;
+
+                    img {
+                        width: 100%;
+                        max-height: 350px;
+                        object-fit: cover;
+                    }
+                    .user {
+                        display: flex;
+                        flex-direction: column;
+                        width: 25%;
+                        color: white;
+                        gap: 10px;
+                        p {
+                            margin-top: 0;
+                        }
+                    }
+                    .edit {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 5px;
+                        img {
+                            width: 30px;
+                            height: 30px;
+                            cursor: pointer;
+                        }
+                    }
+                    h1 {
+                        font-size: 3rem;
+                        margin-top: 15px;
+                        color: #fea49f;
+                    }
+                    p {
+                        text-align: justify;
+                        line-height: 1.5;
+                        color: white;
+                    }
+                    .group-container {
+                        margin-top: 15px;
+                        display: flex;
+                        flex-direction: row;
+                    }
+                }
+
+                .menu {
+                    flex: 2;
+                    color: white;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+                    h1 {
+                        font-size: 1.5rem;
+                        text-align: center;
+                        color: white;
+                        margin-top: 0;
+                        margin-bottom: 0;
+                    }
+                    .post {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        align-items: flex-end;
+                        img {
+                            width: 100%;
+                            max-height: 200px;
+                            object-fit: cover;
+                        }
+                        button {
+                            width: max-content;
+                            padding: 10px;
+                            background-color: #fea49f;
+                            font-size: 1rem;
+                            color: white;
+                            border: none;
                             transition: background-color 0.5s;
                             cursor: pointer;
                         }
@@ -160,15 +295,13 @@ html, body {
                         }
                     }
                 }
-                .post:nth-child(even) {
-                    flex-direction: row-reverse;
-                    .content {
-                        text-align: left;
-                    }
-                    .image {
-                        box-shadow: 20px 20px 0 white;
-                    }
-                }
+            }
+
+            .comments {
+                display: flex;
+                justify-content: center;
+                color: white;
+                margin-top: 50px;
             }
         }
     }
