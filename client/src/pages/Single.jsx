@@ -5,6 +5,12 @@ import {Link} from "react-router";
 import Menu from "../components/Menu.jsx";
 
 function Single() {
+    const comments =
+        [
+        "Great article!",
+        "Very informative.",
+        "I totally agree with this point of view!"
+    ];
     return (
         <div className="single">
             <div className="container">
@@ -40,10 +46,21 @@ function Single() {
                 </div>
             </div>
             <div className="comments">
-                comments section
+                <h3>Comments</h3>
+                <div className="comment-input">
+                    <input type="text" placeholder="Write a comment..."/>
+                    <button>Add Comment</button>
+                </div>
+                <ul className="comment-list">
+                    {comments.map((comment, index) => (
+                        <li key={index} className="comment-item">
+                            <div className="comment-author">Bartosz S.</div>
+                            <div className="comment-content">{comment}</div>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     );
 }
-
 export default Single;

@@ -6,7 +6,7 @@ import Write from "./pages/Write.jsx";
 import Single from "./pages/Single.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Layout from "./components/Layout.jsx";
-import "./style.css"
+import "./style.scss"
 
 function App() {
     return (
