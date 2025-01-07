@@ -27,7 +27,7 @@ html, body {
         height: 350px;
       }
 
-      .login-container {
+      .auth-container {
         h1 {
           text-align: center;
           font-size: 2rem;
@@ -42,6 +42,11 @@ html, body {
           width: 250px;
           gap: 18px;
           border-radius: 4px;
+          p {
+            text-align: center;
+            color: red;
+            font-size: 0.9rem;
+          }
         }
 
         input {

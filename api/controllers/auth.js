@@ -3,29 +3,31 @@ import bcrypt from 'bcryptjs';
 
 export const register = (req, res) => {
 
-    const query = "SELECT * FROM user WHERE username = ? OR email = ?";
+    const queryCheckUser = 'SELECT * FROM "user" WHERE username = $1 OR email = $2';
 
-    db.query(query, [req.body.username, req.body.email], (err, result) => {
-        if (err) {
-            return res.json(err);
-        }
-        if (result.length) {
-            return res.status(409).json("409. User already exists.");
-        }
-
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(req.body.password, salt);
-
-        const query = "INSERT INTO user('username', 'password', 'email', 'role_id') VALUES (?)";
-        const values = [req.body.username, hash, req.body.email, 1];
-
-        db.query(query, values, (err, result) => {
-            if (err) {
-                return res.json(err);
+    db.query(queryCheckUser, [req.body.username, req.body.email])
+        .then(result => {
+            if (result.rows.length) {
+                return res.status(409).json("User already exists!");
             }
-            return res.status(201).json("Successfully registered.");
+
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(req.body.password, salt);
+
+            const queryInsertUser = 'INSERT INTO "user"(username, password, email, role_id) VALUES ($1, $2, $3, $4)';
+            const values = [req.body.username, hash, req.body.email, 1];
+
+            db.query(queryInsertUser, values)
+                .then(() => {
+                    return res.status(201).json("Successfully registered.");
+                })
+                .catch(err => {
+                    return res.json(err);
+                });
         })
-    });
+        .catch(err => {
+            return res.json(err);
+        })
 }
 
 export const login = (req, res) => {
