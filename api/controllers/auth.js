@@ -1,5 +1,6 @@
 import { db } from '../db.js'
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export const register = (req, res) => {
 
@@ -31,6 +32,31 @@ export const register = (req, res) => {
 }
 
 export const login = (req, res) => {
+
+    const queryCheckUser = 'SELECT * FROM "user" WHERE username = $1';
+
+    db.query(queryCheckUser, [req.body.username])
+    .then(result => {
+        if (result.rows.length === 0) {
+            return res.status(404).json("User doesn't exist!");
+        }
+
+        const passwordCheck = bcrypt.compareSync(req.body.password, result.rows[0].password);
+
+        if (!passwordCheck) {
+            return res.status(401).json("Username or password incorrect!");
+        }
+
+        const token = jwt.sign({id: result.rows[0].id}, "secretKey");
+
+        res.cookie("token", token, {
+            httpOnly: true,
+        });
+        res.status(200).json(result.rows[0].id, result.rows[0].username, result.rows[0].email);
+    })
+    .catch(err => {
+        return res.json(err);
+    })
 }
 
 export const logout = (req, res) => {
