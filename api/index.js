@@ -1,10 +1,12 @@
 import express from 'express';
+import cors from 'cors';
 import authRoutes from './routes/auth.js';
 import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -12,6 +14,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 
-app.listen(3000, () => {
-    console.log('Express server listening on port 3000');
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Express server listening on port ${PORT}`);
 });

@@ -1,8 +1,14 @@
-import postgres from "postgres";
+import pg from 'pg';
 
-export const db = postgres({
-    host: "localhost",
-    port: 5432,
+const { Client} = pg;
+
+export const db = new Client({
     user: "postgres",
-    database: "tech_blog"
+    host: "localhost",
+    database: "tech_blog",
+    port: 5432
 });
+
+db.connect()
+    .then(() => console.log("Connected to the database."))
+    .catch((err) => console.error("Database connection error:", err.stack));
