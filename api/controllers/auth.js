@@ -48,11 +48,13 @@ export const login = (req, res) => {
         }
 
         const token = jwt.sign({id: result.rows[0].id}, "secretKey");
+        const { password, ...data } = result.rows[0];
 
         res.cookie("token", token, {
             httpOnly: true,
+            sameSite: 'none'
         });
-        res.status(200).json(result.rows[0].id, result.rows[0].username, result.rows[0].email);
+        res.status(200).json(data);
     })
     .catch(err => {
         return res.json(err);
@@ -60,4 +62,8 @@ export const login = (req, res) => {
 }
 
 export const logout = (req, res) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: "none"
+    }).status(200).json("Successfully logged out!");
 }
