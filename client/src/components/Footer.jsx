@@ -6,7 +6,7 @@ function Footer() {
         <footer>
             <img src={Logo} alt="Logo"/>
             <span>
-                © 2024 <b>Geek Speak.</b> All Rights Reserved.
+                © 2025 <b>Geek Speak.</b> All Rights Reserved.
             </span>
         </footer>
     );

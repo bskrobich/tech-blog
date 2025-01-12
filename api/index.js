@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
-app.use('/api/post', postRoutes);
+app.use('/api/posts', postRoutes);
 app.use('/api/user', userRoutes);
 
 const PORT = 3000;
