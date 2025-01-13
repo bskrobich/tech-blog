@@ -1,4 +1,5 @@
 import { db } from '../db.js'
+import jwt from "jsonwebtoken";
 
 export const getPosts = async (req, res) => {
     const category = req.query.category;
@@ -42,6 +43,26 @@ export const updatePost = async (req, res) => {
 }
 
 export const deletePost = async (req, res) => {
+    const token = req.cookies.token;
+    console.log(req.cookies);
+    console.log(req.headers);
+    if (!token) {
+        return res.status(401).json('401. No token provided');
+    }
+    jwt.verify(token, "secretKey", (err, decoded) => {
+        if (err) {
+            return res.status(403).json('403. Token not valid');
+        }
 
+        const postId = req.params.id;
+        const deletePostQuery = `DELETE FROM post WHERE id = $1 AND user_id = $2`;
+
+        db.query(deletePostQuery, [postId, decoded.id], (err) => {
+            if (err) {
+                return res.status(403).json("403. Only your posts can be deleted");
+            }
+            return res.status(200).json("Post deleted successfully.");
+        });
+    });
 }
 
