@@ -52,9 +52,11 @@ export const login = (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            sameSite: 'none'
-        });
-        res.status(200).json(data);
+            sameSite: 'Lax',
+            maxAge: 8 * 60 * 60 * 1000,
+            path: '/',
+            secure: false
+        }).status(200).json(data);
     })
     .catch(err => {
         return res.json(err);
@@ -64,6 +66,8 @@ export const login = (req, res) => {
 export const logout = (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
-        sameSite: "none"
+        sameSite: 'Lax',
+        path: '/',
+        secure: false
     }).status(200).json("Successfully logged out!");
 }

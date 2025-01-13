@@ -12,12 +12,16 @@ export const AuthContextProvider = ({ children }) => {
     }, [user]);
 
     const login = async (input) => {
-        const res = await axios.post("http://localhost:3000/api/auth/login", input);
+        const res = await axios.post("http://localhost:3000/api/auth/login", input, {
+            withCredentials: true
+        });
         setUser(res.data);
     };
 
     const logout = async () => {
-        await axios.post("http://localhost:3000/api/auth/logout");
+        await axios.post("http://localhost:3000/api/auth/logout", {}, {
+            withCredentials: true
+        });
         setUser(null);
     };
 
