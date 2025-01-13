@@ -44,8 +44,6 @@ export const updatePost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     const token = req.cookies.token;
-    console.log(req.cookies);
-    console.log(req.headers);
     if (!token) {
         return res.status(401).json('401. No token provided');
     }
