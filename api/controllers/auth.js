@@ -16,7 +16,7 @@ export const register = (req, res) => {
             const hash = bcrypt.hashSync(req.body.password, salt);
 
             const queryInsertUser = 'INSERT INTO "user"(username, password, email, role_id) VALUES ($1, $2, $3, $4)';
-            const values = [req.body.username, hash, req.body.email, 1];
+            const values = [req.body.username, hash, req.body.email, 3];
 
             db.query(queryInsertUser, values)
                 .then(() => {
@@ -33,7 +33,11 @@ export const register = (req, res) => {
 
 export const login = (req, res) => {
 
-    const queryCheckUser = 'SELECT * FROM "user" WHERE username = $1';
+    const queryCheckUser =
+        `SELECT u.id, u.username, u.password, u.email, r.name AS role
+         FROM "user" u
+         JOIN role r ON u.role_id = r.id
+         WHERE username = $1`;
 
     db.query(queryCheckUser, [req.body.username])
     .then(result => {

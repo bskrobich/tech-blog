@@ -56,10 +56,11 @@ function Single() {
                         alt=""/>
                     <div className="group-container">
                         <div className="user">
-                            <span><b>{post?.author}</b></span>
+                            <span><b>By {post?.author}</b></span>
                             <p>Posted {moment(post?.updated_at).fromNow()}</p>
                         </div>
-                        { parseInt(user?.id) === post?.user_id && <div className="edit">
+                        { ((parseInt(user?.id) === post?.user_id) || (user?.role === 'Admin')) &&
+                            <div className="edit">
                             <Link to="/write?edit=1">
                                 <img src={Edit} alt="Edit"/>
                             </Link>
@@ -74,7 +75,7 @@ function Single() {
                     </p>
                 </div>
                 <div className="menu">
-                    <Menu />
+                    <Menu category={post?.category}/>
                 </div>
             </div>
             <div className="comments">

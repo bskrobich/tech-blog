@@ -4,7 +4,10 @@ import jwt from "jsonwebtoken";
 export const getPosts = async (req, res) => {
     const category = req.query.category;
     const getPostsQuery = category ?
-        "SELECT * FROM post JOIN category ON post.category_id = category.id WHERE UPPER(category.name) = UPPER($1)"
+        `SELECT p.id, p.title, p.content, p.image_url, p.updated_at, p.user_id, p.category_id, c.name 
+         FROM post p 
+         JOIN category c ON p.category_id = c.id 
+         WHERE UPPER(c.name) = UPPER($1)`
         : "SELECT * FROM post";
 
     const queryParams = category ? [category] : [];
@@ -53,7 +56,10 @@ export const deletePost = async (req, res) => {
         }
 
         const postId = req.params.id;
-        const deletePostQuery = `DELETE FROM post WHERE id = $1 AND user_id = $2`;
+        const deletePostQuery =
+            `DELETE FROM post p
+             USING "user" u
+             WHERE p.id = $1 AND (p.user_id = $2 OR u.role_id = 1)`;
 
         db.query(deletePostQuery, [postId, decoded.id], (err) => {
             if (err) {

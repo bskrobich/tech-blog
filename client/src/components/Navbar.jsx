@@ -31,12 +31,11 @@ function Navbar() {
                     <Link className="link" to="/?category=AI">
                         <h4>AI</h4>
                     </Link>
-                    { user ?
+                    { (user && (user.role === 'Admin' || user.role === 'Author')) && (
                         <span className="write">
                             <Link className="write-link" to="/write">Write</Link>
                         </span>
-                        : null
-                    }
+                    )}
                     <span>{user?.username}</span>
                     {user ?
                         <span onClick={logout}>Logout</span>
