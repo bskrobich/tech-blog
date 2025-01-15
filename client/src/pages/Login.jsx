@@ -31,7 +31,9 @@ function Login() {
 
     return (
         <div className="auth">
-            <img src={Logo} alt="Logo"/>
+            <Link to="/">
+                <img src={Logo} alt="Logo"/>
+            </Link>
             <div className="auth-container">
                 <h1>Log in</h1>
                 <form>

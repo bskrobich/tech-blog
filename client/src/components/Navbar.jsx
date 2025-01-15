@@ -1,11 +1,23 @@
 import React, {useContext} from 'react';
 import Logo from "../images/logo.png";
-import { Link } from "react-router";
+import {Link, useNavigate} from "react-router";
 import {AuthContext} from "../context/authContext.jsx";
 
 function Navbar() {
 
     const { user, logout } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await logout();
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className="navbar">
@@ -38,7 +50,7 @@ function Navbar() {
                     )}
                     <span>{user?.username}</span>
                     {user ?
-                        <span onClick={logout}>Logout</span>
+                        <span onClick={handleSubmit}>Logout</span>
                         : <Link className="login-link" to="/login">Login</Link>}
                 </div>
             </div>
