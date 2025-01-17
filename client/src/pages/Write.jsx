@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
-import {useLocation} from "react-router";
+import {useLocation, useNavigate} from "react-router";
 import moment from "moment";
 
 function Write() {
@@ -11,6 +11,7 @@ function Write() {
     const [title, setTitle] = useState(state?.title || '');
     const [image, setImage] = useState(state?.image_url || null);
     const [category, setCategory] = useState(state?.category || '');
+    const navigate = useNavigate();
 
     const upload = async () => {
         try {
@@ -46,6 +47,7 @@ function Write() {
                             image_url: image ? url : "",
                             created_at: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
                     }, { withCredentials: true });
+            navigate("/");
         } catch (error) {
             console.log(error);
         }
