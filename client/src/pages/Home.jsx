@@ -27,7 +27,7 @@ function Home() {
                     posts.map(post => (
                         <div className="post" key={post.id}>
                             <div className="image">
-                                <img src={post.image_url} alt="" />
+                                <img src={post.image_url && post.image_url.startsWith("http") ? post.image_url : `../uploads/${post.image_url}`} alt="" />
                             </div>
                             <div className="content">
                                 <h1>{post.title}</h1>

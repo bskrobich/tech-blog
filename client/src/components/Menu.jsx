@@ -23,7 +23,7 @@ function Menu({category}) {
             <h1>More from Geek Speak</h1>
             {posts.map( post => (
                 <div className="post" key={post.id}>
-                    <img src={post.image_url} alt=""/>
+                    <img src={post.image_url && post.image_url.startsWith("http") ? post.image_url : `../uploads/${post.image_url}`} alt="" />
                     <h2>{post.title}</h2>
                     <Link className="link" to={`/post/${post.id}`}>
                         <button>Read more</button>

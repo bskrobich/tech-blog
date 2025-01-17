@@ -51,9 +51,7 @@ function Single() {
         <div className="single">
             <div className="container">
                 <div className="content">
-                    <img
-                        src={post?.image_url}
-                        alt=""/>
+                    <img src={post.image_url && post.image_url.startsWith("http") ? post.image_url : `../uploads/${post.image_url}`} alt="" />
                     <div className="group-container">
                         <div className="user">
                             <span><b>By {post?.author}</b></span>
@@ -61,7 +59,7 @@ function Single() {
                         </div>
                         { ((parseInt(user?.id) === post?.user_id) || (user?.role === 'Admin')) &&
                             <div className="edit">
-                            <Link to="/write?edit=1">
+                            <Link to={`/write?edit=${post.id}`} state={post}>
                                 <img src={Edit} alt="Edit"/>
                             </Link>
                             <img onClick={handleDelete} src={Delete} alt="Delete"/>
@@ -70,9 +68,7 @@ function Single() {
                     <h1>
                         {post?.title}
                     </h1>
-                    <p>
-                        {post?.content}
-                    </p>
+                    <p dangerouslySetInnerHTML={{ __html: post?.content }}></p>
                 </div>
                 <div className="menu">
                     <Menu category={post?.category}/>
