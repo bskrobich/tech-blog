@@ -3,7 +3,6 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.js';
 import postRoutes from './routes/posts.js';
-import userRoutes from './routes/users.js';
 import multer from 'multer';
 
 const app = express();
@@ -33,7 +32,6 @@ app.post('/api/upload', upload.single('image'), function (req, res) {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
-app.use('/api/user', userRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {
