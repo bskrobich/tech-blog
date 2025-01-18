@@ -48,7 +48,10 @@ function Navbar() {
                             <Link className="write-link" to="/write">Write</Link>
                         </span>
                     )}
-                    <span>{user?.username}</span>
+                    { (user && (user.role === 'Admin')) ?
+                        <Link className="login-link" to="/admin-dashboard">{user?.username}</Link>
+                        : <span>{user?.username}</span>
+                    }
                     {user ?
                         <span onClick={handleSubmit}>Logout</span>
                         : <Link className="login-link" to="/login">Login</Link>}

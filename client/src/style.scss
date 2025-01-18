@@ -462,10 +462,28 @@ html, body {
     }
     .not-found {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       color: #fea49f;
+      .gif {
+        width: 400px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+    }
+    .admin-dashboard {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fea49f;
+      .gif {
+        width: 300px;
+        height: auto;
+      }
     }
   }
 }

@@ -7,6 +7,7 @@ import Single from "./pages/Single.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Layout from "./components/Layout.jsx";
 import "./style.scss"
+import Admin from "./pages/Admin.jsx";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         </Route>
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/admin-dashboard" element={<Admin />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </BrowserRouter>
