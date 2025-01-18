@@ -11,7 +11,6 @@ function Write() {
     const [title, setTitle] = useState(state?.title || '');
     const [image, setImage] = useState(state?.image_url || null);
     const [category, setCategory] = useState(state?.category || '');
-    const navigate = useNavigate();
 
     const upload = async () => {
         try {
@@ -27,7 +26,7 @@ function Write() {
     const handleClick = async (e) => {
         e.preventDefault();
         let url = image;
-        if (!image) {
+        if (image && typeof image === 'object') {
             url = await upload();
         }
         try {
@@ -47,7 +46,6 @@ function Write() {
                             image_url: image ? url : "",
                             created_at: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
                     }, { withCredentials: true });
-            navigate("/");
         } catch (error) {
             console.log(error);
         }
@@ -81,8 +79,8 @@ function Write() {
                         <label htmlFor="tech">Tech</label>
                     </div>
                     <div className="category">
-                        <input type="radio" checked={category === 'Reviews'} name="category" value="Reviews" id="reviews" onChange={e => setCategory(e.target.value)}/>
-                        <label htmlFor="reviews">Reviews</label>
+                        <input type="radio" checked={category === 'Politics'} name="category" value="Politics" id="politics" onChange={e => setCategory(e.target.value)}/>
+                        <label htmlFor="politics">Politics</label>
                     </div>
                     <div className="category">
                         <input type="radio" checked={category === 'Science'} name="category" value="Science" id="science" onChange={e => setCategory(e.target.value)}/>

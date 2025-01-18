@@ -30,7 +30,9 @@ function Register() {
 
     return (
         <div className="auth">
-            <img src={Logo} alt="Logo"/>
+            <Link to="/">
+                <img src={Logo} alt="Logo"/>
+            </Link>
             <div className="auth-container">
                 <h1>Sign up</h1>
                 <form>

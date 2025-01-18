@@ -31,8 +31,8 @@ function Navbar() {
                     <Link className="link" to="/?category=Tech">
                         <h4>Tech</h4>
                     </Link>
-                    <Link className="link" to="/?category=Reviews">
-                        <h4>Reviews</h4>
+                    <Link className="link" to="/?category=Politics">
+                        <h4>Politics</h4>
                     </Link>
                     <Link className="link" to="/?category=Science">
                         <h4>Science</h4>
