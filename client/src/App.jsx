@@ -1,19 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import {BrowserRouter, Routes, Route, useLocation} from "react-router";
 import Home from "./pages/Home.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Write from "./pages/Write.jsx";
 import Single from "./pages/Single.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import Layout from "./components/Layout.jsx";
-import "./style.scss"
 import Admin from "./pages/Admin.jsx";
+import Layout from "./components/Layout.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
+import "./style.scss"
 
 function App() {
     return (
         <div className="app">
             <div className="container">
                 <BrowserRouter>
+                    <ScrollToTop />
                     <Routes>
                         <Route path="/" element={<Layout />} >
                             <Route index element={<Home />} />
