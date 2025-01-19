@@ -369,10 +369,19 @@ html, body {
             margin-bottom: 5px;
             border: 1px solid #fea49f;
 
+            display: flex;
+            justify-content: space-between;
+
             .comment-author {
               font-weight: bold;
               color: black;
               margin-bottom: 5px;
+            }
+
+            img {
+              width: 30px;
+              height: 30px;
+              cursor: pointer;
             }
           }
         }

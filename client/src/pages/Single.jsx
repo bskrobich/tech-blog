@@ -20,7 +20,7 @@ function Single() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchPost = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/posts/${postId}`);
                 setPost(response.data);
@@ -28,7 +28,7 @@ function Single() {
                 console.log(err);
             }
         };
-        fetchData();
+        fetchPost();
     }, [postId]);
 
     useEffect(() => {
@@ -72,6 +72,17 @@ function Single() {
         }
     }
 
+    const handleDeleteComment = async (commentId) => {
+        try {
+            await axios.delete(`http://localhost:3000/api/comments/${commentId}`, {
+                withCredentials: true
+            });
+            setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentId));
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <div className="single">
             <div className="container">
@@ -109,8 +120,16 @@ function Single() {
                 <ul className="comment-list">
                     {comments.map((comment, index) => (
                         <li key={index} className="comment-item">
-                            <div className="comment-author">{comment?.author}</div>
-                            <div className="comment-content">{comment.content}</div>
+                            <div className="comment">
+                                <div className="comment-author">{comment?.author}</div>
+                                <div className="comment-content">{comment.content}</div>
+                            </div>
+                            <div className="delete-comment">
+                                {
+                                    ((user?.id=== comment?.author_id) || (user?.role === 'Admin'))
+                                    && <img onClick={() => handleDeleteComment(comment.id)} src={Delete} alt="Delete"/>
+                                }
+                            </div>
                         </li>
                     ))}
                 </ul>
