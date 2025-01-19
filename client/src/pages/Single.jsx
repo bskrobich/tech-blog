@@ -10,19 +10,14 @@ import {AuthContext} from "../context/authContext.jsx";
 function Single() {
 
     const [post, setPost] = useState({});
+    const [comment, setComment] = useState("");
+    const [comments, setComments] = useState([]);
 
     const postId = useLocation().pathname.split("/")[2];
 
     const { user } = useContext(AuthContext);
 
     const navigate = useNavigate();
-
-    const comments =
-        [
-            "Great article!",
-            "Very informative.",
-            "I totally agree with this point of view!"
-        ];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,12 +31,42 @@ function Single() {
         fetchData();
     }, [postId]);
 
-    const handleDelete = async () => {
+    useEffect(() => {
+        const fetchComments = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/comments/?post=${postId}`, {
+                    withCredentials: true
+                });
+                setComments(response.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchComments();
+    }, [postId])
+
+    const handleDeletePost = async () => {
         try {
             await axios.delete(`http://localhost:3000/api/posts/${postId}`,{
                 withCredentials: true
             });
             navigate('/');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleAddComment = async () => {
+        if (!comment.trim()) return;
+        try {
+            const response = await axios.post(`http://localhost:3000/api/comments/?post=${postId}`, {
+                content: comment,
+                created_at: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+            }, {
+                withCredentials: true
+            });
+            setComments((prevComments) => [response.data, ...prevComments]);
+            setComment("")
         } catch (err) {
             console.log(err);
         }
@@ -62,7 +87,7 @@ function Single() {
                             <Link to={`/write?edit=${post.id}`} state={post}>
                                 <img src={Edit} alt="Edit"/>
                             </Link>
-                            <img onClick={handleDelete} src={Delete} alt="Delete"/>
+                            <img onClick={handleDeletePost} src={Delete} alt="Delete"/>
                         </div> }
                     </div>
                     <h1>
@@ -76,15 +101,16 @@ function Single() {
             </div>
             <div className="comments">
                 <h3>Comments</h3>
-                <div className="comment-input">
-                    <input type="text" placeholder="Write a comment..."/>
-                    <button>Add Comment</button>
-                </div>
+                { user ?
+                    ( <div className="comment-input">
+                        <input type="text" value={comment} placeholder="Write a comment..." onChange={e => setComment(e.target.value)} />
+                        <button onClick={handleAddComment}>Add Comment</button>
+                    </div>) : <h4>You must be logged in to comment</h4>}
                 <ul className="comment-list">
                     {comments.map((comment, index) => (
                         <li key={index} className="comment-item">
-                            <div className="comment-author">Bartosz S.</div>
-                            <div className="comment-content">{comment}</div>
+                            <div className="comment-author">{comment?.author}</div>
+                            <div className="comment-content">{comment.content}</div>
                         </li>
                     ))}
                 </ul>

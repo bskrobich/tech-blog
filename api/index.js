@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
+import multer from 'multer';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.js';
 import postRoutes from './routes/posts.js';
-import multer from 'multer';
+import commentRoutes from './routes/comments.js';
 
 const app = express();
 
@@ -29,10 +30,11 @@ const upload = multer({ storage });
 app.post('/api/upload', upload.single('image'), function (req, res) {
     const image = req.file;
     res.status(200).json(image.filename);
-})
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/comments', commentRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {
