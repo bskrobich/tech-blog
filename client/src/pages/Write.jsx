@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
-import {useLocation, useNavigate} from "react-router";
+import {useLocation} from "react-router";
 import moment from "moment";
 
 function Write() {

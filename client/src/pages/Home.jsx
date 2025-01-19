@@ -12,7 +12,7 @@ function Home() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/posts/${category}`);
-                setPosts(response.data.reverse());
+                setPosts(response.data);
             } catch (err) {
                 console.log(err);
             }

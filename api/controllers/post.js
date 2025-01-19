@@ -7,8 +7,9 @@ export const getPosts = async (req, res) => {
         `SELECT p.id, p.title, p.content, p.image_url, p.updated_at, p.user_id, p.category_id, c.name 
          FROM post p 
          JOIN category c ON p.category_id = c.id 
-         WHERE UPPER(c.name) = UPPER($1)`
-        : "SELECT * FROM post";
+         WHERE UPPER(c.name) = UPPER($1)
+         ORDER BY p.updated_at DESC`
+        : "SELECT * FROM post ORDER BY updated_at DESC";
 
     const queryParams = category ? [category] : [];
 
