@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route, useLocation} from "react-router";
+import {BrowserRouter, Routes, Route} from "react-router";
 import Home from "./pages/Home.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";

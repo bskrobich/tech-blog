@@ -10,6 +10,34 @@ function Home() {
 
     const category = useLocation().search;
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 2;
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+    const totalPages = Math.ceil(posts.length / postsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            setTimeout(function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },2);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            setTimeout(function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },2);
+        }
+    };
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -50,11 +78,18 @@ function Home() {
                 />
             </form>
             <div className="posts">
-                {Array.isArray(posts) && posts.length > 0 ? (
-                    posts.map(post => (
+                {Array.isArray(currentPosts) && currentPosts.length > 0 ? (
+                    currentPosts.map((post) => (
                         <div className="post" key={post.id}>
                             <div className="image">
-                                <img src={post.image_url && post.image_url.startsWith("http") ? post.image_url : `../uploads/${post.image_url}`} alt=""/>
+                                <img
+                                    src={
+                                        post.image_url && post.image_url.startsWith('http')
+                                            ? post.image_url
+                                            : `../uploads/${post.image_url}`
+                                    }
+                                    alt=""
+                                />
                             </div>
                             <div className="content">
                                 <h1>{post.title}</h1>
@@ -67,6 +102,17 @@ function Home() {
                 ) : (
                     <p className="no-posts-message">No posts available</p>
                 )}
+            </div>
+            <div className="pagination">
+                <button className="prev-page" onClick={handlePreviousPage} disabled={currentPage === 1}>
+                    Previous
+                </button>
+                <span className="page-info">
+                    Page {currentPage} of {totalPages}
+                </span>
+                <button className="next-page" onClick={handleNextPage} disabled={currentPage === totalPages}>
+                    Next
+                </button>
             </div>
         </div>
     );

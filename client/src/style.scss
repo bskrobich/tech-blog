@@ -141,7 +141,7 @@ html, body {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 100px;
+      margin-top: 75px;
       font-size: 0.8rem;
       background-color: #fea49f;
 
@@ -235,6 +235,29 @@ html, body {
           color: white;
         }
       }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 115px;
+        color: white;
+
+        button {
+          margin: 0 10px;
+          padding: 10px 15px;
+          background-color: transparent;
+          color: white;
+          border: 1px solid #ff8a85;
+          cursor: pointer;
+        }
+
+        button:disabled {
+          background-color: transparent;
+          border: 1px solid #ccc;
+          cursor: not-allowed;
+        }
+      }
+
     }
 
     .single {
