@@ -64,7 +64,6 @@ A modern blogging platform built with React, Node.js, and PostgreSQL, featuring 
 ### Frontend
 - React.js
 - React Router for navigation
-- Redux for state management
 - Axios for API communication
 - SCSS for styling
 
