@@ -21,6 +21,21 @@ export const getPosts = async (req, res) => {
     });
 }
 
+export const getPostsBySearch = async (req, res) => {
+    const search = req.query.search;
+    const getPostsQuery =
+        `SELECT * FROM post
+         WHERE LOWER(title) LIKE LOWER('%' || $1 || '%')
+         ORDER BY updated_at DESC`;
+
+    db.query(getPostsQuery, [search], (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        return res.status(200).json(result.rows);
+    });
+}
+
 export const getPost = async (req, res) => {
     const postId = req.params.id;
     const getPostQuery =
