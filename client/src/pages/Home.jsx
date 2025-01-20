@@ -78,7 +78,7 @@ function Home() {
                 />
             </form>
             <div className="posts">
-                {Array.isArray(currentPosts) && currentPosts.length > 0 ? (
+                { Array.isArray(currentPosts) && currentPosts.length > 0 ? (
                     currentPosts.map((post) => (
                         <div className="post" key={post.id}>
                             <div className="image">
@@ -100,20 +100,22 @@ function Home() {
                         </div>
                     ))
                 ) : (
-                    <p className="no-posts-message">No posts available</p>
+                    <p className="no-posts-message">No posts available.</p>
                 )}
             </div>
-            <div className="pagination">
-                <button className="prev-page" onClick={handlePreviousPage} disabled={currentPage === 1}>
-                    Previous
-                </button>
-                <span className="page-info">
+            { Array.isArray(currentPosts) && currentPosts.length > 0 ? (
+                <div className="pagination">
+                    <button className="prev-page" onClick={handlePreviousPage} disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    <span className="page-info">
                     Page {currentPage} of {totalPages}
                 </span>
-                <button className="next-page" onClick={handleNextPage} disabled={currentPage === totalPages}>
-                    Next
-                </button>
-            </div>
+                    <button className="next-page" onClick={handleNextPage} disabled={currentPage === totalPages}>
+                        Next
+                    </button>
+                </div> ) : null
+            }
         </div>
     );
 }
