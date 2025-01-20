@@ -25,6 +25,10 @@ function Write() {
 
     const handleClick = async (e) => {
         e.preventDefault();
+        if (!title || !content || !category) {
+            alert("All fields (title, content, category) must be filled in!");
+            return;
+        }
         let url = image;
         if (image && typeof image === 'object') {
             url = await upload();

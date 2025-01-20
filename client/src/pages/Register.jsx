@@ -20,6 +20,23 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!input.email || !input.username || !input.password) {
+            alert("All fields (email, username, password) must be filled in!");
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.email)) {
+            setError("Please enter a valid email.");
+            return;
+        }
+        if (input.username.length < 3) {
+            setError("Username must be at least 3 characters long.");
+            return;
+        }
+        if (input.password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
         try {
             await axios.post("http://localhost:3000/api/auth/register", input);
             navigate("/login");
