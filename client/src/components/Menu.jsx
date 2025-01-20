@@ -10,7 +10,7 @@ function Menu({category}) {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/posts/?category=${category}`);
-                setPosts(response.data.reverse());
+                setPosts(response.data.slice(0, 3));
             } catch (err) {
                 console.log(err);
             }

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.js';
 import postRoutes from './routes/posts.js';
 import commentRoutes from './routes/comments.js';
+import {connectToDatabase} from "./db/db.js";
 
 const app = express();
 
@@ -36,7 +37,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Express server listening on port ${PORT}`);
-});
+connectToDatabase()
+    .then(() => {
+        const PORT = 3000;
+        app.listen(PORT, () => {
+            console.log(`Express server listening on port ${PORT}`);
+        });
+    });
