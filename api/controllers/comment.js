@@ -1,4 +1,4 @@
-import {db} from "../db.js";
+import {db} from "../db/db.js";
 import jwt from "jsonwebtoken";
 
 export const getComments = async (req, res) => {

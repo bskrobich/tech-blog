@@ -1,4 +1,4 @@
-import { db } from '../db.js'
+import { db } from '../db/db.js'
 import jwt from "jsonwebtoken";
 
 export const getPosts = async (req, res) => {
@@ -116,10 +116,11 @@ export const updatePost = async (req, res) => {
             }
             const categoryId = parseInt(result.rows[0].id);
 
-            const addPostQuery =
-                `UPDATE post 
+            const updatePostQuery =
+                `UPDATE post
              SET title = $1, content = $2, image_url = $3, updated_at = $4, category_id = $5
-             WHERE id = $6 AND user_id = $7`;
+             FROM "user" u
+             WHERE post.id = $6 AND (post.user_id = $7 OR u.role_id = 1)`;
 
             const values = [
                 req.body.title,
@@ -131,7 +132,7 @@ export const updatePost = async (req, res) => {
                 parseInt(decoded.id)
             ];
 
-            db.query(addPostQuery, values, (err, result) => {
+            db.query(updatePostQuery, values, (err, result) => {
                 if (err) {
                     return res.status(500).json(err);
                 }
