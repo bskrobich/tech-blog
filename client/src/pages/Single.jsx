@@ -126,7 +126,7 @@ function Single() {
                             </div>
                             <div className="delete-comment">
                                 {
-                                    ((user?.id=== comment?.author_id) || (user?.role === 'Admin'))
+                                    ((user?.id=== comment?.author_id) || (parseInt(user?.id) === post?.user_id)  || (user?.role === 'Admin'))
                                     && <img onClick={() => handleDeleteComment(comment.id)} src={Delete} alt="Delete"/>
                                 }
                             </div>
